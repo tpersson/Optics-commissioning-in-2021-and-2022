@@ -1,0 +1,26 @@
+option, warn,info;
+Option, -echo,-info;
+beam, energy = 6800, bv=-1;
+call,file="acc-models-lhc/lhc.seq";
+!   call,file="acc-models-lhc/operation/optics/R2022a_A11mC11mA10mL10m.madx";
+call,file="acc-models-lhc/operation/optics/R2022a_A30cmC30cmA10mL200cm.madx";
+!call,file="acc-models-lhc/toolkit/remove-triplet-symmetry-knob.madx"; 
+use, sequence=lhcb2;
+seqedit, sequence=lhcb2;
+flatten;
+cycle, start=MKI.A5R8.B2;
+ENDEDIT;
+use, sequence=lhcb2;
+select, flag=twiss, clear;
+select, flag=twiss, PATTERN=BPM, column= name,s, betx, bety, dx, dy, r12,r21,r22,r11;
+select, flag=twiss, PATTERN=IP, column= name,s,  betx, bety, dx, dy, r12,r21,r22,r11;
+ !select, flag=twiss, PATTERN=MQXA, column= name,s,betx, bety, dx, dy, r12,r21,r22,r11;
+ 
+twiss,file="twiss_on.tfs"; !q1=62.31
+!call, file="scaleFactors.madx";
+!twiss,file="twiss_scaled.tfs"; !q1=62.31
+!stop;
+twiss,deltap=0.0001,file="twiss_off.tfs";  ! q1=62.32  q'=10
+correct, mode=svd;
+
+twiss,deltap=0.0001,file="twiss_corr.tfs"; !q1=62.236
