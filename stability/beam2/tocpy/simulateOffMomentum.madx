@@ -15,12 +15,13 @@ select, flag=twiss, clear;
 select, flag=twiss, PATTERN=BPM, column= name,s, betx, bety, dx, dy, r12,r21,r22,r11;
 select, flag=twiss, PATTERN=IP, column= name,s,  betx, bety, dx, dy, r12,r21,r22,r11;
  !select, flag=twiss, PATTERN=MQXA, column= name,s,betx, bety, dx, dy, r12,r21,r22,r11;
- 
+!Normal twiss 
 twiss,file="twiss_on.tfs"; !q1=62.31
 !call, file="scaleFactors.madx";
 !twiss,file="twiss_scaled.tfs"; !q1=62.31
 !stop;
+!Normal off-momentum twiss
 twiss,deltap=0.0001,file="twiss_off.tfs";  ! q1=62.32  q'=10
 correct, mode=svd;
-
+!This twiss gives you the equivalent to an energy since the orbit is now corrected.  
 twiss,deltap=0.0001,file="twiss_corr.tfs"; !q1=62.236

@@ -7,15 +7,6 @@ BETY_FILE = '/getbetay_free.out'
 BETX_MDL = 'BETXMDL'
 BETY_MDL = 'BETYMDL'
 
-#betx1 = tfs.read("getbetax1_free.out", index="NAME")
-#betx2 = tfs.read("getbetax2_free.out", index="NAME")
-#betx1.rename(columns = {'BETXMDL':'newModel'}, inplace = True)
-
-#diff_betx = betx1 - betx2
-#diff_betx['S'] = betx1['S']
-#diff_betx['BETXMDL'] = betx1['BETXMDL']
-#print(diff_betx)
-
 def get_pd_diff(inref, incomp, plane):
 	if(plane == 'X'):
 		f_name = BETX_FILE
@@ -38,31 +29,22 @@ def get_pd_diff(inref, incomp, plane):
 	diff_bet['errorbar'] = np.sqrt(diff_bet['err_comp']**2 + diff_bet['err_ref']**2)/diff_bet[m_name]
 	diff_bet['beat'] = diff_bet[c_name]/diff_bet[m_name]
 	return diff_bet
-#/user/slops/data/LHC_DATA/OP_DATA/Betabeat/2022-05-29/
-# 5_files_tct_symmetrical_beam1
-# 30cm_tct_after_nlo_seq_played_for_tct
-## 4_files_no_xing_no_sep_half_rf
-# 04-47-48_NORMALANALYSIS_SUSSIX_11_ForOptics
-#ref_folder = 'LHCB1/Results/5_files_tct_symmetrical_beam1/'
-#'LHCB1/Results/30cm_tct_after_nlo_seq_played_for_tct',
-
 
 plt.rcParams.update({'font.size': 16})
-compNum = 0
-if compNum == 0: 
-	max_min = 0.15
-	ref_folder = ['/user/slops/data/LHC_DATA/OP_DATA/Betabeat/2022-05-26/LHCB2/Results/b2_30cm_nocorrinarcs/', '/afs/cern.ch/eng/sl/lintrack/LHC_commissioning2022/COM_2022_06_17_vertical_vaistShift/30cm_delta_energy/']
-	ref_name   = '26May'
-	beam = "LHCB2"
-	output_name = "plot_BB_B2_9May-vs-26May_DIFF"
-	comp_folders = ['/user/slops/data/LHC_DATA/OP_DATA/Betabeat/2022-05-08/LHCB2/Results/5kicks_30cm/',  '/afs/cern.ch/eng/sl/lintrack/LHC_commissioning2022/COM_2022_06_17_vertical_vaistShift/30cm_on_off_momentum_b2/']
+
+max_min = 0.15
+ref_folder = ['/user/slops/data/LHC_DATA/OP_DATA/Betabeat/2022-05-26/LHCB2/Results/b2_30cm_nocorrinarcs/', '/afs/cern.ch/eng/sl/lintrack/LHC_commissioning2022/COM_2022_06_17_vertical_vaistShift/30cm_delta_energy/']
+ref_name   = '26May'
+beam = "LHCB2"
+output_name = "plot_BB_B2_9May-vs-26May_DIFF"
+comp_folders = ['/user/slops/data/LHC_DATA/OP_DATA/Betabeat/2022-05-08/LHCB2/Results/5kicks_30cm/',  '/afs/cern.ch/eng/sl/lintrack/LHC_commissioning2022/COM_2022_06_17_vertical_vaistShift/30cm_on_off_momentum_b2/']
 
 
 fig , (ax1,ax2) = plt.subplots(2)
 plt.subplots_adjust(top=0.7)
 markers = ['.k', '*g']
 labels = ['Diff 9th May - 26th May', 'Diff Relative Energy trim $10^{-4}$', 'Diff Simulate Relative Energy trim $10^{-4}$']
-for i in range(0, len(comp_folders)-1):
+for i in range(0, len(comp_folders)):
 	print(comp_folders[i] , "  ", ref_folder[i])
 	betx_diff = get_pd_diff(ref_folder[i], comp_folders[i], 'X')
 	bety_diff = get_pd_diff(ref_folder[i], comp_folders[i], 'Y')
@@ -84,14 +66,14 @@ diff_y = q8_and_higher['BETY'] -  original['BETY']
 diff_dx = original['DX'] - q8_and_higher['DX']
 diff_dy = original['DY'] - q8_and_higher['DY']
 
-#ax1.plot(original['S'], diff_x/original['BETX'],'s',zorder=3, label=labels[2])
-#ax2.plot(original['S'], diff_y/original['BETY'],'s',zorder=3)
+ax1.plot(original['S'], diff_x/original['BETX'],'s',zorder=3, label=labels[2])
+ax2.plot(original['S'], diff_y/original['BETY'],'s',zorder=3)
 
 ax1.set_ylim([-max_min, max_min])
 ax2.set_ylim([-max_min, max_min])
 ax2.set_xlabel("S [m]")
-ax1.set_ylabel("Horizontal")
-ax2.set_ylabel("Vertical")
+ax1.set_ylabel(r"$\frac{\Delta \beta _x}{\beta _{x,ref}}$")
+ax2.set_ylabel(r"$\frac{\Delta \beta _y}{\beta _{y,ref}}$")
 #fig.legend(bbox_to_anchor = (0.9, 1.0))
 
 
