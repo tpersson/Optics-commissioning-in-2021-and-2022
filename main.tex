@@ -1,18 +1,21 @@
 \documentclass{cernatsnote}
-\usepackage[colorinlistoftodos]{todonotes}
-\usepackage{placeins}
+%\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[utf8]{inputenc}
+%\usepackage{placeins}
+\usepackage{pdfpages,multirow,ragged2e} %
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{longtable}
 \usepackage{booktabs}
 \usepackage{float}
+\usepackage{tabulary}
+\usepackage{tabularray}
 
 \title{Optics commissioning in Run~3}
-\author{T.~Persson,  F.~Carlier, A.~Costa~Ojeda, J.~Dilly, H. Garc\'ia Morales, S.~Fartoukh,  V.~Ferrentino, E.~Fol, M.~Hofer, E.J~Høydalsvik, J.~Keintzel, M.~Le~Garrec, E.H.~Maclean, L.~Malina,  F.~Soubelet, R.~Tom\'as, L.~Van Riesen-Haupt and A.~Wegscheider, CERN, Geneva, Switzerland 
-  J. Cardona, Universidad Nacional de Colombia \; \\		
-	CERN, CH-1211 Geneva, Switzerland
+\author{T.~Persson,  F.~Carlier, A.~Costa~Ojeda, J.~Dilly, H. Garc\'ia Morales, S.~Fartoukh,  V.~Ferrentino, E.~Fol, M.~Hofer, E.J~Høydalsvik, J.~Keintzel, M.~Le~Garrec, E.H.~Maclean, L.~Malina,  F.~Soubelet, R.~Tom\'as, L.~Van Riesen-Haupt and A.~Wegscheider and J. Cardona, 
+  %Universidad Nacional de Colombia \\		
+%	CERN, CH-1211 Geneva, Switzerland
 }
-\email{tobias.persson@cern.ch}
 \date{\today}
 
 \begin{document}
@@ -39,6 +42,10 @@ In 2021 a dedicated beam test took place at injection energy. The results from t
 
 \section{Local corrections}
 \section{Injection}
+
+During Long Shutdown 2 (LS2) it was decided to remove one warm quadrupole on either side of IP7, MQWA.E5, to replace it with shielding~\cite{roderik}.  
+
+
 \subsection{Linear Corrections}
 The beam test week took place in the autumn of 2021 with the intention of testing the LHC after the LS2 to be ready for the full restart in 2022.
 The initial measurement of the $\beta$-beat showed significantly higher values than what was measured previously during commissioning. This is shown in Fig.~\ref{fig:initalVs2016} for Beam~1 and Beam~2 respectively.  
@@ -48,53 +55,55 @@ The initial measurement of the $\beta$-beat showed significantly higher values t
 \begin{subfigure}{.5\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{plots/beam1/beta_beat_swapped_vs_2016.pdf}  
+  \includegraphics[width=.98\linewidth]{inj_linear/beamtest/beam1/beta_beat_before_after_swap.pdf}  
   \caption{Beam~1}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
   % include second image
-  \includegraphics[width=.8\linewidth]{plots/beam2/B2_BetaBeat_2016_vs_first2021.pdf}  
+  \includegraphics[width=.98\linewidth]{inj_linear/beamtest/beam2/B2_BetaBeat_2016_vs_first2021.pdf}  
   \caption{Beam~2}
 \end{subfigure}
-\caption{The $\beta$-beating for the first measurement in 2021 compared to the measurement in 2016 (during MD).}
+\caption{The $\beta$-beating for the first measurement in 2021 compared to the measurement in 2016 (during MD), showing a significantly increased $\beta$-beating in the vertical planes of both beams.}
 \label{fig:initalVs2016}
 \end{figure}
 %beta_beat_before_after_pre_beam1.pdf
 
-The first attempt was to try to understand if something had gone wrong during the pre-cycle or the fact that the machine had been around 40h at injection without any pre-cycle could have an effect. The re-measurement showed a modest effect on the $\beta$-beat as seen in Fig.~\ref{fig:before_after_pre_cycle}.
+The first attempt was to try to understand if something had gone wrong during the pre-cycle or the fact that the machine had been around 40h at injection without any pre-cycle could have an effect. Therefore it was decided to perform a magnetic cycle to all magnets (this is called precycle) and measure optics again.
+The beta-beat right after precycling and after 40h at injection is very similar, within 2-3\%, as seen in Fig.~\ref{fig:Inj_before_after_pre_cycle}.
 
 \begin{figure}[ht]
 \begin{subfigure}{.5\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{plots/beam1/beta_beat_before_after_pre_beam1.pdf}  
+  \includegraphics[width=.99\linewidth]{inj_linear/beamtest/beam1/beta_beat_before_after_pre_beam1.pdf}  
   \caption{Beam~1}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
   % include second image
-  \includegraphics[width=.8\linewidth]{plots/beam2/beta_beat_before_after_pre_beam2.pdf}  
+  \includegraphics[width=.99\linewidth]{inj_linear/beamtest/beam2/beta_beat_before_after_pre_beam2.pdf}  
   \caption{Beam~2}
 \end{subfigure}
-\caption{A comparison of before and after the pre-cycle.}
-\label{fig:before_after_pre_cycle}
+\caption{A comparison of
+$\beta$-beating right after precycling and after 42h at injection showing almost equal results within  2-3\%.}
+\label{fig:Inj_before_after_pre_cycle}
 \end{figure}
 
 
-After ruling out that the big change was coming coming from the extended time spent at injection we attempted to find the location of the error. Using the Segment-by-Segment (SBS)~\cite{} technique it was found that there was a large phase deviation around IP3 and in particular around IR3Q7. It was decided that we should try to trim on that magnet in order to reduce the $\beta$-beat. The first observation was that nothing changed at all (not even a tune change). We then observed that the tune was changing on the opposite beam. We then repeated the test for the IR3Q7 of the opposite beam and we then again observed a change in tune, again on the opposite beam. From that we could conclude that indeed the IR3Q7s were swapped. This was then traced to an old swap already detected in Run~1. This was fixed at that time but then during the LS2 it was again re-introduced. After this was corrected on the software side a new measurement was carried out and the $\beta$-beat is shown in Fig.~\ref{fig:before_after_swap}. In this plot we can see that the $\beta$-beat was significantly reduced, as expected, after the swap was corrected.  
+After ruling out that the source of the large $\beta$-beating was the extended time spent at injection we attempted to find the location of the quadrupolar error. Using the Segment-by-Segment (SBS) technique~\cite{first,tomasCERNLargeHadron2010} it was found that there was a large phase deviation in IR3 and in particular at the seventh quadrupole right of IP3, MQTL7R3.B2. It was decided that we should try to trim on that magnet in order to reduce the $\beta$-beat. The first observation was that nothing changed at all (not even a tune change). We then observed that the tune was changing on the opposite beam. We then repeated the test for the IR3Q7 of the opposite beam and we then again observed a change in tune, again on the opposite beam. From that we could conclude that indeed the IR3Q7s were swapped. This was then traced to an old swap already detected in Run~1 as reported in~\cite{first}. This was fixed at that time but then during the LS2 it was again re-introduced. After this was corrected on the software side a new measurement was carried out and the $\beta$-beat is shown in Fig.~\ref{fig:before_after_swap}. In this plot we can see that the $\beta$-beat was significantly reduced, as expected, after the swap was corrected.  
 
 \begin{figure}[ht]
 \begin{subfigure}{.5\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{plots/beam1/beta_beat_before_after_swap.pdf}  
+  \includegraphics[width=.99\linewidth]{inj_linear/beamtest/beam1/beta_beat_before_after_swap.pdf}  
   \caption{Beam~1}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
   % include second image
-  \includegraphics[width=.8\linewidth]{plots/beam1/beta_beat_before_after_swap.pdf}  
+  \includegraphics[width=.99\linewidth]{inj_linear/beamtest/beam1/beta_beat_before_after_swap.pdf}  
   \caption{Beam~2}
 \end{subfigure}
 \caption{A comparison of before and after correcting the swap of the Q7R3.}
@@ -107,33 +116,33 @@ It is also interesting to observe if there is any sign of any degradation or any
 \begin{subfigure}{.5\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{plots/beam1/beta_beat_virgin_2016_2021.pdf}  
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/beam1/beta_beat_virgin_2016_2021.pdf}  
   \caption{Beam~1}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
   % include second image
-  \includegraphics[width=.8\linewidth]{plots/beam2/B2_BetaBeat_afterIR3Q7fix_vs_virgin2016.pdf}  
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/beam2/B2_BetaBeat_afterIR3Q7fix_vs_virgin2016.pdf}  
   \caption{Beam~2}
 \end{subfigure}
 \caption{After fix of swap of IR3Q7 vs 2016 virgin.}
 \label{fig:after_swap_vs_2016}
 \end{figure}
 
-Based on the measurement after the correction of the swapped quadrupole a correction of the phase advance as well as the normalized dispersion was calculated. The impact on the $\beta$-beat is shown in Fig.~\ref{fig:before_after_correction_beta_beat} and the impact on the normalized dispersion is shown in Fig.~\ref{fig:before_after_correction_beta_beat}. The result is well within the required machine protection limit and similar to what has been measured as $\beta$-beat in the past. 
+Based on the measurement after the correction of the swapped quadrupole, a correction of the phase advance as well as the normalized dispersion was calculated. The impact on the $\beta$-beat is shown in Fig.~\ref{fig:before_after_correction_beta_beat} and the impact on the normalized dispersion is shown in Fig.~\ref{fig:before_after_correction_beta_beat}. The result is well within the required machine protection limit and similar to what has been measured as $\beta$-beat in the past. 
 
 
 \begin{figure}[ht]
 \begin{subfigure}{.5\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{plots/beam1/beta_beat_before_and_after_corr.pdf}  
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/beam1/beta_beat_before_and_after_corr.pdf}  
   \caption{Beam~1}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
   % include second image
-  \includegraphics[width=.8\linewidth]{plots/beam2/beta_beat_before_after_correction.pdf}  
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/beam2/beta_beat_before_after_correction.pdf}  
   \caption{Beam~2}
 \end{subfigure}
 \caption{Beta-beat before and after correction.}
@@ -144,17 +153,59 @@ Based on the measurement after the correction of the swapped quadrupole a correc
 \begin{subfigure}{.5\textwidth}
   \centering
   % include first image
-  \includegraphics[width=.8\linewidth]{plots/beam1/Normalized_disp_before_vs_after_corection.pdf}  
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/beam1/Normalized_disp_before_vs_after_corection.pdf}  
   \caption{Beam~1}
 \end{subfigure}
 \begin{subfigure}{.5\textwidth}
   \centering
   % include second image
-  \includegraphics[width=.8\linewidth]{plots/beam2/ndisp_before_after_correction.pdf}  
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/beam2/ndisp_before_after_correction.pdf}  
   \caption{Beam~2}
 \end{subfigure}
 \caption{Normalized dispersion before and after correction.}
 \label{fig:before_after_correction_beta_beat}
+\end{figure}
+
+
+
+
+\subsection{MCS powering}
+\section{MCS feed-down}
+
+It has been observed that changing the strength of the MCS ($b_3$ spool pieces) has an impact on the transverse coupling in the LHC. The main hypothesis is that this is coming from a vertical misalignment of the MCS. In order to validate if the effect had remained constraint after the Long Shutdowns a new measurement was carried out during the beam-test. The result for Beam~1 is show in in Fig.~\ref{}
+
+\begin{figure}[ht]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/MCS/b_1change_re_per_b3.pdf}  
+  \caption{Real part of the $C^-$.}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/MCS/b_1change_im_per_b3.pdf}  
+  \caption{Imaginary part of the $C^-$.}
+\end{subfigure}
+\caption{The impact on the $C^-$ from changing the MCS corrector ($b_3$-spool pieces) for Beam~1. }
+\label{fig:beam1_mcs}
+\end{figure}
+
+\begin{figure}[ht]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/MCS/b2_change_re_per_b3.pdf}  
+  \caption{Real part of the $C^-$.}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.8\linewidth]{inj_linear/beamtest/MCS/b_2change_im_per_b3.pdf}  
+  \caption{Imaginary part of the $C^-$.}
+\end{subfigure}
+\caption{The impact on the $C^-$ from changing the MCS corrector ($b_3$-spool pieces) for Beam~1.}
+\label{fig:beam2_mcs}
 \end{figure}
 
 \subsection{Non Linear}
@@ -162,7 +213,7 @@ Based on the measurement after the correction of the swapped quadrupole a correc
 After the local corrections but before the global corrections there was a stop of YYY for the installation of the velo for LHCb. When we again measured we observed that the $\beta$-beat was significantly different to what was compared straight after the local corrections. This is shown in f
 
 \section{Ramp}
-In the beginning of Run~2 the global corrections used at injections were trimmed out linearly from 450~GeV to YYY. This was changed in 2018 because it was observed that the correction was not beneficial in the later stage. The correction was then trimmed out YYYY. This approach was also followed in the 2022 commissioning. In YYY we measured the $\beta$-beat along the ramp using 3 bunches. The use of the 3 bunches was possible due to simulation that considered the machine protection during LS~2\cite{}. In Fig~\ref{fig:ramp_peak_rms} is shown. We notice that there is a peak close to which is a bit higher around 1900~GeV in horizontal and around 3000~GeV in vertical. 
+In the beginning of Run~2 the global corrections used at injections were trimmed out linearly from 450~GeV to YYY. This was changed in 2018 because it was observed that the correction was not beneficial in the later stage. The correction was then trimmed out YYYY. This approach was also followed in the 2022 commissioning. In YYY we measured the $\beta$-beat along the ramp using 3 bunches. The use of the 3 bunches was possible due to a simulation that considered the machine protection during LS~2\cite{}. In Fig~\ref{fig:ramp_peak_rms} is shown. We notice that there is a peak close to which is a bit higher around 1900~GeV in horizontal and around 3000~GeV in vertical. 
 
 \begin{figure}[ht]
 \begin{subfigure}{.5\textwidth}
@@ -200,8 +251,8 @@ In Fig.~\ref{fig:ramp_mqt} the $\beta$-beat is plotted together with the expecte
 
 \section{Local}
 
-In order to determine the Interaction Region local corrections the optics was squeezed down to $\beta^*$ = 30~cm without any optics corrections. This is the smallest $\beta^*$ ever reached in the LHC without triplet corrections. The measurement revealed a peak $\beta$-beating of around 150\% which is also the highest ever measured in the LHC. The usual procedure to compute local IR corrections was followed. It consists of taking turn-by-turn data with the AC-dipole~\cite{record} and performing K-modulation for the most inner quadrupole (Q1) left and right of IP1 and IP5~\cite{felixkmod}. 
-The local corrections calculated in Run~2 were all based on the SbS technique~\cite{tomasCERNLargeHadron2010, jaime_rdt}. In Run~3 two additional methods based on Action-Phase-Jump (APJ)~\cite{cardona17, cardona20,Garcia_Morales:IPAC21-MOPAB186, ipac2022_apj} and Machine Learning (ML)~\cite{IPAC2020Fol , epj_efol, efol_mlcorr_this_conference} were used. The SbS and APJ techniques are using both the AC-dipole turn-by-turn data and the results from the K-modulation while the ML currently only uses the Turn-by-Turn (TbT) data. The three different methods performed well but the ML was less local in the correction and therefore the choice was then between the SbS and APJ. Even though the corrections are different in strength, see Tab.~\ref{tab:localcorr:full}, they had almost identical impact on both the phase and the $\beta$-functions, as seen in Fig.~\ref{fig:local_ip15}. We can also observe that the corrections calculated in Run~2 were not fully compatible with what was measured in Run~3~\footnote{The compared corrections are from the proton-proton run. A small correction was also applied for the Ion Run in  2018~\cite{tobias_evian19}}. The difference of the local phase beating between Run 2 and Run 3 is smaller than what was observed between Run~1 and Run~2~\cite{evian_2015_langer}.
+In order to determine the Interaction Region local corrections the optics were squeezed down to $\beta^*$ = 30~cm without any optics corrections. This is the smallest $\beta^*$ ever reached in the LHC without triplet corrections. The measurement revealed a peak $\beta$-beating of around 150\% which is also the highest ever measured in the LHC. The usual procedure to compute local IR corrections was followed. It consists of taking turn-by-turn data with the AC-dipole~\cite{record} and performing K-modulation for the most inner quadrupole (Q1) left and right of IP1 and IP5~\cite{felixkmod}. 
+The local corrections calculated in Run~2 were all based on the SbS technique~\cite{tomasCERNLargeHadron2010, jaime_rdt}. In Run~3 two additional methods based on Action-Phase-Jump (APJ)~\cite{cardona17, cardona20,Garcia_Morales:IPAC21-MOPAB186, ipac2022_apj} and Machine Learning (ML)~\cite{IPAC2020Fol , epj_efol, efol_mlcorr_this_conference} were used. The SbS and APJ techniques are using both the AC-dipole turn-by-turn data and the results from the K-modulation while the ML currently only uses the Turn-by-Turn (TbT) data. The three different methods performed well but the ML was less local in the correction and therefore the choice was then between the SbS and APJ. Even though the corrections are different in strength, see Tab.~\ref{tab:localcorr:full}, they had almost identical impact on both the phase and the $\beta$-functions, as seen in Fig.~\ref{fig:local_ip15}. We can also observe that the corrections calculated in Run~2 were not fully compatible with what was measured in Run~3~\footnote{The compared corrections are from the proton-proton run. A small correction was also applied for the Ion Run in 2018~\cite{tobias_evian19}}. The difference of the local phase beating between Run 2 and Run 3 is smaller than what was observed between Run~1 and Run~2~\cite{evian_2015_langer}.
 \begin{table}
     \centering
     \caption{\label{tab:localcorr:full} Local correction strengths for end of proton Run~2 compared values calculated using APJ and SbS in Run~3. The polarity indicates the sign of the $K$-value of the magnet.} 
@@ -231,26 +282,7 @@ The local corrections calculated in Run~2 were all based on the SbS technique~\c
 
     \end{tabular}
  \end{table}
-
-
-\begin{table}[h]
-\centering
-\caption{The measured $\beta^*$ before and after the Local Corrections were trimmed in for the $\beta^*=$~30~cm optics.}\label{tab:betaIP}
-\scalebox{0.80}{
-\begin{tabular}{|l|c|c|c|c|c|c|c|c|}\hline
-  & \multicolumn{4}{c|}{IP 1 $\beta ^*$ [cm]}  & \multicolumn{4}{c|}{IP 5  $\beta ^*$ [cm]} \\\cline{2-9} 
-  & \multicolumn{2}{c|}{Beam 1} 
-  & \multicolumn{2}{c|}{Beam 2}   
-  & \multicolumn{2}{c|}{Beam 1} 
-  & \multicolumn{2}{c|}{Beam 2}\\\cline{2-7}\cline{8-9}
-  & H  & V & H & V & H & V & H & V \\ \hline
- Virgin       & 66.6 $\pm$ 1.2 & 46.6 $\pm$ 0.5 & 40.2 $\pm$ 0.7 & 129.5 $\pm$ 2.3 & 69.1 $\pm$ 1.3 & 49.6 $\pm$ 1.1 & 34.8 $\pm$  0.5 & 52.9 $\pm$ 1.0 \\ \hline
- %IP5 in       & 30.2 $\pm$ 0.1 & 30.2 $\pm$ 0.8 & 30.7 $\pm$ 0.1 & 30.5 $\pm$	0.1 & 30.1 $\pm$ 0.1 & 30.2 $\pm$ 0.1 & 31.2 $\pm$	0.4 & 30.7 $\pm$ 0.3 \\ \hline
- After Local    & 32.4 $\pm$ 0.3 & 30.5 $\pm$ 0.3 & 31.6 $\pm$ 0.4 & 28.3 $\pm$	0.1 & 32.4 $\pm$ 0.4 & 31.2 $\pm$ 0.2 & 28.7 $\pm$	0.3 & 31.2 $\pm$ 0.2 \\ \hline
- %2018(MD)& 30.3 $\pm$ 0.1 & 30.0 $\pm$ 0.2 & 30.7 $\pm$ 0.1 & 30.1 $\pm$	0.1 & - & - & -	 & -  \\ \hline
-\end{tabular}}
-\end{table}
-
+ 
 Both the APJ and the SbS corrections were tested in the machine and the resulting $\beta$-beating was very similar between the two sets of corrections. In Fig.~\ref{fig:30cm_before_after_local} the $\beta$-beating before and after corrections is shown. The corrections used for IP1 were calculated with APJ while for IR5 they were calculated using SbS. The reason for this was that K-modulation in this configuration gave results slightly closer to the model. Local corrections at IP2 and IP8 were also implemented, based on SbS, but they have a much smaller impact on the overall $\beta$-beating due to the larger $\beta^*$ and hence smaller $\beta$-function in the triplet magnet. 
 
 \begin{figure}
@@ -312,6 +344,52 @@ An attempt to do a K-modulation was also performed but the tune signal was too n
 \caption{$\beta$-beat with the LRBB wire On and Off.}
 \label{fig:before_after_pre_cycle}
 \end{figure}
+\section{2023}
+The Run~3 optics was designed in such a way that the change between 2022 and 2023 should be small. The difference was between ~4 TeV in the ramp and down to 60~cm. The difference in this part was that while in 2022 the telescopic index was constant at 1 for this part this was first decreased to 0.5 during the ramp and then kept like that until the collisions started at 1.2~m. The other difference was in 2023 there was additional rotation of the crossing angle in IP8. 
+
+Originally, the plan was to stay with the same injection optics in 2022 and 2023. During the yearly stop it was, however, observed that by changing the phase advance between the different sectors it would be possible to reduce the octupolar RDTs. This work and the results are described in YYY, while the injection optics measurement. 
+nts and corrections from 2021 and 2022 are described in YYY1.
+
+\section{Local coupling corrections}
+The first local corrections were calculated during the beam test in 2021 based on the segment-by-segment technique. The corrections were later refined slightly for IP1 (by $10^{-4}$ for the RQXS.3L1) when the machine was squeezed down to 30cm. It is possible to balance the strength between the right and left corrector for each IP without changing the global coupling. However, the relative strength between, the two correctors has a big impact on the beam size at the IP. In order to establish the best balance between the left and right correctors two different methods were used. The first one was based on a rigid waist shift, explained in detail in YYY. The other one was based on observing the luminosity while varying the strength from the corrector on one side of the IP to the corrector on the other side. The two methods gave almost identical results for the best correction. 
+
+\begin{table}[!htb]
+    \centering
+    \begin{tblr}{colspec={ccccc}}
+        \hline
+        \SetCell[r=2,c=1]{c} \textbf{IR}  &  \SetCell[r=2,c=1]{c} \textbf{Circuit} & \SetCell[c=3]{c} \textbf{\(K_{1\mathrm{S}}\)~[\qty{1e-4}{\per\square\meter}]}                                              \\
+        \cline{3,4,5}
+                                          &                                        &  \textbf{2016-2018}~\cite{CERN:Persson:LHCOpticsCorrectionsEvian2019}    &    \textbf{2022 SbS}    &    \textbf{2022 RWS}  \\
+        \hline
+        \SetCell[r=2,c=1]{c} \textbf{IR1} &  \textbf{RQXS.3L1}                     &  \num{11}                                                                &     \num{8}             &     \num{11.5}        \\
+                                          &  \textbf{RQXS.3R1}                     &  \num{7}                                                                 &     \num{7}             &     \num{3.5}         \\
+       \hline[dashed]
+        \SetCell[r=2,c=1]{c} \textbf{IR2} &  \textbf{RQXS.3L2}                     &  \num{-14}                                                               &     \num{-14}         &        -                 \\
+                                          &  \textbf{RQXS.3R2}                     &  \num{-14}                                                               &     \num{-14}         &        -                 \\
+   
+        \hline[dashed]
+        \SetCell[r=2,c=1]{c} \textbf{IR5} &  \textbf{RQXS.3L5}                     &  \num{7}                                                                 &     \num{6}             &     \num{4}           \\
+                                          &  \textbf{RQXS.3R5}                     &  \num{7}                                                                 &     \num{6}             &     \num{8}           \\
+        \hline[dashed]
+        \SetCell[r=2,c=1]{c} \textbf{IR8} &  \textbf{RQXS.3L8}                     &  \num{-5}                                                                &     \num{-5}          &     -   \\
+                                          &  \textbf{RQXS.3R8}                     &  \num{-5}                                                                &     \num{-5}          &     -   \\
+
+        \hline
+    \end{tblr}
+    \caption{Final values of local IR skew quadrupole correctors powering at the two main LHC experiments, as determined with segment-by-segment (middle), compared to the values used in the LHC Run~\num{2} (left) and the values after RWS adjustments (right).}
+    \label{table:run2_vs_sbs_run3_vs_rws_run3_corrections}
+\end{table}
+
+For beam~1 we also implemented an arc-by-arc correction which was already used in Run~2 YYYipac2022.
+
+\subsection{2m-1.2m}
+The optics 2023 optics was already measured during the 2022 MD period YYstephaneMDnote. During this MD it was observed that the $\beta$-beat at 2~m and 1.2~m was above 20\%. A quick correction was calculated during the MD but it was not optimal in terms of $\beta^*$* correction so it was decided to calculate a new one in 2023. Since the collisions start at 1.2~m it was decided to use that match point to calculate the correction for. The correction come in during the ramp as the tele-index as the tele-index is changed from 1 to 0.5 and then kept constant between end of ramp (beta*-2m) down to 1.2m. The correction is then ramped out linearly from 1.2m to 0.6m. The global correction from 60cm down to 30cm have remained constant between 2023 and 2022. The local corrections have also remained untouched between 2022 and 2023. 
+\subsubsection{Ramp}
+The $\beta$-beat was measured with 3~pilot bunches as a validation. The results are shown in 
+\subsubsection{2m}
+\subsubsection{1.2m-60cm}
+
+%knobs name & In $\beta*$ (energy) & Max $\beta*$ (energy) & Out $\beta*$ (energy)
 
 \section{References}
 \begin{thebibliography}{99} % Use for 1-9 references
@@ -319,6 +397,9 @@ An attempt to do a K-modulation was also performed but the tune signal was too n
 %\bibitem{PhysRevSTAB.15.091001} R. Tom\'as, {\it et al.}, ``Record low $\ensuremath{\beta}$ beating in the LHC''
 %Phys. Rev. ST Accel. Beams {\bf 15}, 091001, September 2012.
 %\url{https://doi.org/10.1103/PhysRevSTAB.15.091001}
+
+\bibitem{roderik} R. Bruce, {\it et al.}, ``New IR7 optics with removed MQW magnets'',  \href{https://indico.cern.ch/event/681507/contributions/2814548/attachments/1570845/2478033/2017.12.06--HSS_meeting_MQW_removal.pdf}{ABP-HSS Section meetings
+Wednesday 6 Dec. 2017}.
 
 \bibitem{ACcom} T.~Persson, {\it et al.}, ``LHC optics commissioning: A journey towards 1$\%$ optics control'', Phys. Rev. Accel. Beams, \textbf{20}, 061002 (2017).
 \url{https://doi.org/10.1103/PhysRevAccelBeams.20.061002}
@@ -331,8 +412,11 @@ An attempt to do a K-modulation was also performed but the tune signal was too n
 	
 \bibitem{ats_stephane}
 S.~Fartoukh, ``Achromatic telescopic squeezing scheme and its application to the LHC and its luminosity upgrade'', Phys. Rev. ST Accel. Beams {\bf16}, 111002 (2013)
-\bibitem{tomasCERNLargeHadron2010}
 
+\bibitem{first} M. Aiba, S. Fartoukh, A. Franchi, M. Giovannozzi, V. Kain, M. Lamont, R. Tom\'as, G. Vanbavinckhove, J. Wenninger, F. Zimmermann, R. Calaga, and A. Morita, ``First beta-beating measurement and optics analysis for the CERN Large Hadron Collider'', Phys. Rev. ST Accel. Beams {\bf12}, 081002 (2009).
+
+
+\bibitem{tomasCERNLargeHadron2010}
 R. Tomás, {\it et al.}, “CERN Large Hadron Collider optics
 model, measurements, and corrections”, {\it Phys. Rev. Accel. Beams}  {\bf 13}, p. 121004 (2010).
 %
