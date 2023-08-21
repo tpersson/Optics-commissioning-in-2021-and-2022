@@ -318,7 +318,7 @@ Both the APJ and the SbS corrections were tested in the machine and the resultin
  % \caption{Beam~2 horizontal}
   %\label{fig:sub_beam2_ip5}
 %\end{subfigure}
-\caption{IR1 Vertical (top) and IR5 Horizontal (bottom) phase deviation between measurement and model run as a segment, or from a model with Run~2 corrections (with opposite sign to mimic errors). Left plots are for Beam 1 and right plots for Beam 2.}
+\caption{IR1 Vertical (top) and IR5 Horizontal (bottom) phase deviation between measurement and model run as a segment, or from a model with Run~2 corrections (with opposite sign to mimic errors). The left plots are for Beam 1 and right plots for Beam 2.}
 \label{fig:local_ip15}
 \end{figure}
 
@@ -385,7 +385,7 @@ For beam~1 we also implemented an arc-by-arc correction which was already used i
 \subsection{2m-1.2m}
 The optics 2023 optics was already measured during the 2022 MD period YYstephaneMDnote. During this MD it was observed that the $\beta$-beat at 2~m and 1.2~m was above 20\%. A quick correction was calculated during the MD but it was not optimal in terms of $\beta^*$* correction so it was decided to calculate a new one in 2023. Since the collisions start at 1.2~m it was decided to use that match point to calculate the correction for. The correction come in during the ramp as the tele-index as the tele-index is changed from 1 to 0.5 and then kept constant between end of ramp (beta*-2m) down to 1.2m. The correction is then ramped out linearly from 1.2m to 0.6m. The global correction from 60cm down to 30~cm have remained constant between 2023 and 2022. The local corrections have also remained untouched between 2022 and 2023. 
 \subsubsection{Ramp}
-The $\beta$-beat was measured with 3~pilot bunches as a validation. The results are shown in Fig~\ref{fig:ramp2023_with_all_info}. The peak beta-beat stays below 13=\% for all the points in the ramp. After the corrections, we don't observe any patterns that correlate with tele-index or the corrections points. 
+The $\beta$-beat was measured with 3~pilot bunches as a validation. The results are shown in Fig~\ref{fig:ramp2023_with_all_info}. The peak beta-beat stays below 13=\% for all the points in the ramp. After the corrections, we don't observe any patterns that correlate with the tele-index or the corrections points. 
 \begin{figure}
     \centering
     \includegraphics{2023/ramp/rms_in_ramp_with_ats_factor.pdf}
@@ -393,7 +393,44 @@ The $\beta$-beat was measured with 3~pilot bunches as a validation. The results 
     \label{fig:ramp2023_with_all_info}
 \end{figure}
 \subsubsection{2m}
-\subsubsection{1.2m-60cm}
+\begin{figure}[ht]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.98\linewidth]{2023/2m/beta_plot_200cm_BEAM_1.pdf}  
+  \caption{Beam~1}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.98\linewidth]{2023/2m/beta_plot_200cm_BEAM_2.pdf}  
+  \caption{Beam~2}
+\end{subfigure}
+\caption{The beta-beat before and after correction. Note that the correction was based on measurement at 1.2~m and then applied at full strength also at 2m. }
+\label{fig:2m_before_after_correction}
+\end{figure}
+
+
+\begin{figure}[ht]
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include first image
+  \includegraphics[width=.98\linewidth]{2023/2m/beta_plot_120cm_BEAM_1.pdf}  
+  \caption{Beam~1}
+\end{subfigure}
+\begin{subfigure}{.5\textwidth}
+  \centering
+  % include second image
+  \includegraphics[width=.98\linewidth]{2023/2m/beta_plot_120cm_BEAM_2.pdf}  
+  \caption{Beam~2}
+\end{subfigure}
+\caption{The beta-beat before and after correction at 1.2m.}
+\label{fig:2m_before_after_correction}
+\end{figure}
+
+
+\subsubsection{1.2m-30cm}
+
 
 %knobs name & In $\beta*$ (energy) & Max $\beta*$ (energy) & Out $\beta*$ (energy)
 
